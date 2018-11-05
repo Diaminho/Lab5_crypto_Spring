@@ -2,8 +2,11 @@ package com.example.springbootexmaple.service;
 
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.swing.*;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -25,4 +28,18 @@ public class FileService {
             return "-1";
         }
     }
+
+    public String getFileFromFileChooser(){
+        JFileChooser fileopen = new JFileChooser();
+        int ret = fileopen.showDialog(null, "Открыть файл");
+        if (ret == JFileChooser.APPROVE_OPTION) {
+            File file = fileopen.getSelectedFile();
+            String fileName=file.getAbsolutePath();
+            System.out.println("Имя файла: "+fileName);
+            //file.;
+            return fileName;
+        }
+        else return "None";
+    }
+
 }

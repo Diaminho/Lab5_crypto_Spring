@@ -9,27 +9,19 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class EncryptingController {
+public class EncryptController {
     EncryptService encryptService;
     FileService fileService;
     private ModelMap modelMap;
 
     @Autowired
-    public EncryptingController() {
+    public EncryptController() {
         this.encryptService = new EncryptService();
         this.fileService=new FileService();
         this.modelMap = new ModelMap();
     }
 
-    @RequestMapping(value = "/encrypting", method = RequestMethod.GET)
-    public ModelAndView encrypting(ModelMap modelMap) {
-        this.modelMap=modelMap;
-        this.modelMap.addAttribute("encrypting", encryptService);
-        return new ModelAndView("encrypting");
-    }
-
-
-    @PostMapping(value = "/result")
+    @PostMapping(value = "/encrypt")
     public ModelAndView result(ModelMap modelMap, @RequestParam(value="fileName") String fileName,@RequestParam(value="keyFile") String keyFile) {
         String info=fileService.getInfoFromFile(fileName);
         String key=fileService.getInfoFromFile(keyFile);
@@ -37,7 +29,7 @@ public class EncryptingController {
         modelMap.put("originalText",info);
         modelMap.put("originalKey",key);
 
-        return new ModelAndView("result");
+        return new ModelAndView("encrypt");
     }
 
 }

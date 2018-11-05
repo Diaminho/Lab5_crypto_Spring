@@ -12,6 +12,9 @@
 <h2>Ключ: </h2><p>${originalKey}</p>
 <h2>Зашифрованный текст: </h2><p>${encryptedText}</p>
 
-</body>
+<form>
+    <input type="submit" formaction="main" value="На главную" />
+</form>
 
+</body>
 </html>
